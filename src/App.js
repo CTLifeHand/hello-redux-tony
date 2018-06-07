@@ -1,20 +1,41 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { increment, decrement } from './store/counter/action';
+import User from './components/User';
 
 class App extends Component {
+
+  static propTypes = {
+    counter: PropTypes.number.isRequired,
+    increment: PropTypes.func.isRequired,
+    decrement: PropTypes.func.isRequired
+  };
+
   render() {
+    const { increment, decrement } = this.props;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="container">
+          <h1 className="jumbotron-heading text-center">{this.props.counter}</h1>
+          <p className="text-center">
+            <button onClick={() => increment()} className="btn btn-primary mr-2">Increase</button>
+            <button onClick={() => decrement()} className="btn btn-danger my-2">Decrease</button>
+          </p>
+        </div>
+        <User />
       </div>
     );
   }
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    counter: state.counter,
+  };
+};
+
+export default connect(mapStateToProps, {increment,decrement})(App);
