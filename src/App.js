@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import { increment, decrement } from './store/counter/action';
 import User from './components/User';
+import Reminder from './components/Reminder';
 
 class App extends Component {
 
@@ -26,6 +27,9 @@ class App extends Component {
           </p>
         </div>
         <User />
+        <Reminder />
+
+        
       </div>
     );
   }
