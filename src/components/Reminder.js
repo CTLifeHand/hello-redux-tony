@@ -105,6 +105,8 @@ class Reminder extends Component {
 
 
 const mapStateToProps = (state) => {
+    console.log(state);
+    
     return {
         reminders: state.reminders
     };
